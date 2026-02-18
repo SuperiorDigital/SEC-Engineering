@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAboutContent } from "@/lib/wordpress/queries";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about SEC MEP Engineering, our history, values, and why clients choose our team.",
+  alternates: {
+    canonical: buildCanonical("/about"),
+  },
+};
 
 export default async function AboutPage() {
   const aboutResult = await getAboutContent();

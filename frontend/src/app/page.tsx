@@ -1,6 +1,24 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getHomepageFeaturedProjects } from "@/lib/wordpress/queries";
+import { buildCanonical, getDefaultOgImage } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "SEC MEP Engineering provides mechanical, electrical, and plumbing engineering services with a visual-first project portfolio.",
+  alternates: {
+    canonical: buildCanonical("/"),
+  },
+  openGraph: {
+    title: "SEC MEP Engineering",
+    description:
+      "Mechanical, Electrical, and Plumbing engineering services with a project-first portfolio.",
+    url: buildCanonical("/"),
+    images: [getDefaultOgImage()],
+  },
+};
 
 function toCategoryLabel(slug: string): string {
   return slug

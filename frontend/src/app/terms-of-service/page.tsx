@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Read SEC MEP Engineering terms of service.",
+  alternates: {
+    canonical: buildCanonical("/terms-of-service"),
+  },
+};
+
 export default function TermsOfServicePage() {
   return (
     <section className="section-space">

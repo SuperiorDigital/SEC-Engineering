@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read SEC MEP Engineering privacy policy information.",
+  alternates: {
+    canonical: buildCanonical("/privacy-policy"),
+  },
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <section className="section-space">

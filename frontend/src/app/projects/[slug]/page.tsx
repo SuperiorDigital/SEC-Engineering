@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/lib/wordpress/queries";
+import { buildCanonical, getDefaultOgImage } from "@/lib/seo";
 
 function toCategoryLabel(slug: string): string {
   return slug
@@ -19,6 +21,39 @@ function toServiceLabel(value: string): string {
 type ProjectDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const result = await getProjectBySlug(slug);
+  const project = result.project;
+
+  if (!project) {
+    return {
+      title: "Project",
+      description: "Project details for SEC MEP Engineering.",
+      alternates: {
+        canonical: buildCanonical(`/projects/${slug}`),
+      },
+    };
+  }
+
+  return {
+    title: project.name,
+    description: project.description,
+    alternates: {
+      canonical: buildCanonical(`/projects/${project.slug}`),
+    },
+    openGraph: {
+      title: project.name,
+      description: project.description,
+      url: buildCanonical(`/projects/${project.slug}`),
+      images: [project.heroImage || getDefaultOgImage()],
+      type: "article",
+    },
+  };
+}
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = await params;

@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getServices } from "@/lib/wordpress/queries";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Explore SEC's mechanical, electrical, and plumbing engineering service capabilities.",
+  alternates: {
+    canonical: buildCanonical("/services"),
+  },
+};
 
 function toServiceLabel(value: string): string {
   return value

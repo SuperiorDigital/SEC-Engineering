@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import { getCareersContent } from "@/lib/wordpress/queries";
 import { CareersApplicationForm } from "@/components/forms/CareersApplicationForm";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Explore engineering opportunities at SEC and submit a careers application.",
+  alternates: {
+    canonical: buildCanonical("/careers"),
+  },
+};
 
 export default async function CareersPage() {
   const careersResult = await getCareersContent();

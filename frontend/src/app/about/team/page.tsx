@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import { TeamGrid } from "@/components/team/TeamGrid";
 import { getTeamMembers } from "@/lib/wordpress/queries";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Our Team",
+  description:
+    "Meet SEC's engineering team and connect directly with individual team members.",
+  alternates: {
+    canonical: buildCanonical("/about/team"),
+  },
+};
 
 export default async function TeamPage() {
   const teamResult = await getTeamMembers();

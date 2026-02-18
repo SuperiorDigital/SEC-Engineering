@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import { getProjects } from "@/lib/wordpress/queries";
 import Link from "next/link";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Browse SEC project work by category, including featured projects and archive history.",
+  alternates: {
+    canonical: buildCanonical("/projects"),
+  },
+};
 
 function toCategoryLabel(slug: string): string {
   return slug

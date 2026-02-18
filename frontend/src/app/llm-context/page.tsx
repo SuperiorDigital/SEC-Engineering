@@ -1,3 +1,15 @@
+import type { Metadata } from "next";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "LLM Context",
+  description:
+    "Structured business context page for AI search and model understanding.",
+  alternates: {
+    canonical: buildCanonical("/llm-context"),
+  },
+};
+
 export default function LlmContextPage() {
   return (
     <section className="section-space">

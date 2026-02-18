@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getContactContent } from "@/lib/wordpress/queries";
 import { ContactInquiryForm } from "@/components/forms/ContactInquiryForm";
+import { buildCanonical } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact SEC MEP Engineering for office information and general project inquiries.",
+  alternates: {
+    canonical: buildCanonical("/contact"),
+  },
+};
 
 export default async function ContactPage() {
   const contactResult = await getContactContent();
