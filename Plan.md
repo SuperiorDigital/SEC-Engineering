@@ -6,27 +6,25 @@ This document outlines the implementation plan for the SEC website redesign proj
 ---
 
 ## Stack
-- [ ] **Frontend:** React 18+ with Next.js
-- [ ] **Backend:** WordPress (headless) with REST API
-- [ ] **Hosting:** Local development on `http://localhost:3009`
-- [ ] **Key Libraries:**
-  - [ ] Axios (API calls)
-  - [ ] Framer Motion (animations)
-  - [ ] React Hook Form (form handling)
-  - [ ] React Lightbox (image galleries)
+- [x] **Frontend:** React + Next.js App Router
+- [x] **Backend:** WordPress (headless) with REST API
+- [x] **Hosting:** Local development on `http://localhost:3009`
+- [x] **Key Libraries in use:**
+  - [x] Next.js built-in `fetch` (API calls)
+  - [x] Google APIs SDK (`googleapis`) for Sheets integration
 
 ---
 
 ## Execution Phases
 
 ### Phase 1: Frontend Architecture (Days 1–2)
-- [ ] Initialize Next.js app
-- [ ] Set up global layout, navigation, and footer
-- [ ] Implement design tokens:
-  - [ ] Color palette (teal, gray, light mode only)
-  - [ ] Typography (headings, body text, spacing)
-  - [ ] Responsive grid system (12-column, mobile-first)
-- [ ] Configure localhost to run on `http://localhost:3009`
+- [x] Initialize Next.js app
+- [x] Set up global layout, navigation, and footer
+- [x] Implement design tokens:
+  - [x] Color palette (teal, gray, light mode only)
+  - [x] Typography (headings, body text, spacing)
+  - [x] Responsive grid system (12-column, mobile-first)
+- [x] Configure localhost to run on `http://localhost:3009`
 
 ### Phase 2: WordPress Content Model (Days 1–2)
 - [x] Create custom post types (CPTs):
@@ -47,36 +45,36 @@ This document outlines the implementation plan for the SEC website redesign proj
   - [x] Ensure hero/gallery media relationships are writable via API
 
 ### Phase 3: API Integration Layer (Days 3–5)
-- [ ] Build a central API client for WordPress REST API
-- [ ] Map WordPress responses to frontend models
-- [ ] Implement category filtering and featured/archive logic
-- [ ] Add caching and revalidation strategies
-- [ ] Handle loading and error states
-- [ ] Implement authenticated content update workflow:
-  - [ ] Project create/update endpoint support (text + metadata)
-  - [ ] Media upload workflow for hero/gallery images
-  - [ ] Link uploaded media to project ACF fields
-  - [ ] Publish/unpublish update capability
-- [ ] Add optional WP-CLI admin workflow:
-  - [ ] Define bulk import/update script approach for projects and images
-  - [ ] Document when to use API vs WP-CLI
+- [x] Build a central API client for WordPress REST API
+- [x] Map WordPress responses to frontend models
+- [x] Implement category filtering and featured/archive logic
+- [x] Add caching and revalidation strategies
+- [x] Handle loading and error states
+- [x] Implement authenticated content update workflow:
+  - [x] Project create/update endpoint support (text + metadata)
+  - [x] Media upload workflow for hero/gallery images
+  - [x] Link uploaded media to project ACF fields
+  - [x] Publish/unpublish update capability
+- [x] Add optional WP-CLI admin workflow:
+  - [x] Define bulk import/update script approach for projects and images
+  - [x] Document when to use API vs WP-CLI
 
 ### Phase 4: Page Development (Days 3–5)
-- [ ] Build the following pages and components:
-  - [ ] **Homepage:** Hero section, featured projects, services overview, statistics, CTA
-  - [ ] **About Us:** Company overview, team grid with modals for bios
-  - [ ] **Services:** Mechanical, Electrical, Plumbing pages
-  - [ ] **Projects:**
-    - [ ] Main portfolio page with category filters
-    - [ ] Project detail pages with galleries and related projects
-  - [ ] **Careers:** Job application form with resume upload
-  - [ ] **Contact:** Office info, Google Maps, minimal contact form
-  - [ ] **Hidden Page:** `/llm-context` for AI optimization
+- [x] Build the following pages and components:
+  - [x] **Homepage:** Hero section, featured projects, services overview, statistics, CTA
+  - [x] **About Us:** Company overview, team grid with modals for bios
+  - [x] **Services:** Mechanical, Electrical, Plumbing pages
+  - [x] **Projects:**
+    - [x] Main portfolio page with category filters
+    - [x] Project detail pages with galleries and related projects
+  - [x] **Careers:** Job application form with resume upload
+  - [x] **Contact:** Office info, Google Maps, minimal contact form
+  - [x] **Hidden Page:** `/llm-context` for AI optimization
 
 ### Phase 5: Forms, SEO, Accessibility (Days 6–7)
-- [ ] Implement forms:
-  - [ ] Careers form (resume upload, validation, email notifications)
-  - [ ] Contact form (minimal fields, validation)
+- [x] Implement forms:
+  - [x] Careers form (resume upload, validation, Google Sheets pipeline)
+  - [x] Contact form (minimal fields, validation)
 - [ ] Optimize for SEO:
   - [ ] Meta tags, Open Graph, schema markup
   - [ ] XML sitemap, robots.txt
@@ -96,12 +94,12 @@ This document outlines the implementation plan for the SEC website redesign proj
 ---
 
 ## Deliverables
-- [ ] Fully functional React frontend integrated with WordPress backend
-- [ ] Responsive, mobile-first design
+- [x] Fully functional React frontend integrated with WordPress backend
+- [x] Responsive, mobile-first design
 - [ ] Optimized performance (Lighthouse 90+)
 - [ ] Accessible and SEO-friendly website
-- [ ] Clear content management workflow for the client
-- [ ] Documented workflow for updating project text and images via REST API, with optional WP-CLI bulk workflow
+- [x] Clear content management workflow for the client
+- [x] Documented workflow for updating project text and images via REST API, with optional WP-CLI bulk workflow
 
 ---
 
@@ -115,8 +113,16 @@ This document outlines the implementation plan for the SEC website redesign proj
 ---
 
 ## Next Steps
-1. [ ] Initialize Next.js app and configure localhost.
-2. [ ] Set up WordPress content model with CPTs, taxonomies, and ACF fields.
-3. [ ] Configure authenticated REST write workflow for project content and media.
-4. [ ] Define optional WP-CLI bulk update workflow and documentation.
-5. [ ] Begin building core pages and components.
+1. [ ] Run end-to-end production verification (Careers + Contact submissions to Google Sheet).
+2. [ ] Complete SEO pass (metadata, OG, sitemap, robots).
+3. [ ] Complete accessibility QA pass (WCAG 2.1 AA checklist).
+4. [ ] Execute launch QA checklist (mobile/browser/performance/content).
+5. [ ] Optional: add email notifications (Lorrie + applicant confirmation).
+
+---
+
+## Post-Launch Improvements (Optional)
+- [ ] Add dedicated email notifications for submissions.
+- [ ] Add reCAPTCHA or Turnstile for stronger bot protection.
+- [ ] Add admin dashboard/reporting view for submissions.
+- [ ] Add automated integration tests for API routes and form flows.
